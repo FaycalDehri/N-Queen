@@ -9,8 +9,7 @@ public class Main {
         System.out.println();
     }
     public static void main(String[] args) {
-        int n = 4
-                ;
+        int n = 8;
         ArrayList<int[]> temp = new ArrayList<int []>();
         int[] solution = DFS.search(n, temp);
 

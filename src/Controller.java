@@ -5,6 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,7 +24,7 @@ public class Controller implements Initializable {
     private Button MyPrevious;
     @FXML
     private  ChoiceBox<String> MyChoiceBox;
-    private  String[] choices={"DFS","BFS","Heuristic"};
+    private  String[] choices={"Empty","DFS","BFS","Heuristic"};
     private static int BOARD_SIZE;
 
     public static void setBOARD_SIZE(int SIZE) {
@@ -39,6 +42,8 @@ public class Controller implements Initializable {
         MyChoiceBox.setLayoutX(BOARD_SIZE+100);
         MyChoiceBox.setLayoutY(MyLabel.getLayoutY() + 40);
 
+
+
         //Position of MyNext
         MyNext.setLayoutX(BOARD_SIZE-70);
         MyNext.setLayoutY(BOARD_SIZE+25);
@@ -54,14 +59,31 @@ public class Controller implements Initializable {
         MyRun.setLayoutY(MyChoiceBox.getLayoutY()+40);
 
         //MyChoiceBox methods
+        Controller control1 = new Controller();
         MyChoiceBox.getItems().addAll(choices);
-        MyChoiceBox.setOnAction(this::getChoice);
+        MyChoiceBox.setValue("Empty");
+        MyChoiceBox.setOnAction(this::getChoiceToLabel);
     }
-    public void getChoice(ActionEvent event) {
+    public void getChoiceToLabel(ActionEvent event) {
         String myChoice = MyChoiceBox.getValue();
         MyLabel.setText(myChoice);
     }
 
+    private int userChoice = 0;
 
+    @FXML
+    private void handleMyRunButton(ActionEvent event) throws IOException {
+        Main main = new Main();
+        Application.clearBoard( main.getGridPane());
+        System.out.println("button clicked");
+        // get the selected search method
+        String selectedSearchMethod = MyChoiceBox.getValue();
+        System.out.println (MyChoiceBox.getValue().toString());
+        // pass the selected search method to the main class
+        Main.SearchMethodSelection( selectedSearchMethod,  main.getSize() ,  main.getGridPane(), userChoice);
+
+        userChoice ++;
+
+    }
 
 }

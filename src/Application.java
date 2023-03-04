@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,7 +19,7 @@ import javafx.scene.shape.Rectangle;
 public class Application  {
 
 //    private static final int BOARD_SIZE = 8;
-    private static final int TILE_SIZE = 50;
+    private static int TILE_SIZE = 50;
     public static GridPane chessBoardCreation(){
         // Create the chess board grid pane
         GridPane gridPane = new GridPane();
@@ -44,11 +47,12 @@ public class Application  {
         // Load the FXML file and get the UI from it
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("resources/hello-view.fxml"));
         Controller controller = new Controller();
-        loader.setController(controller);
+        //loader.setController(controller);
         Controller.setBOARD_SIZE(size);
         Parent controllerRoot = loader.load();
         // Add the UI from the controller to the main scene
         root.getChildren().add(controllerRoot);
+
     }
     public static int input(){
         Scanner scanner = new Scanner(System.in);
@@ -58,25 +62,40 @@ public class Application  {
         return size;
     }
 
-
+    public static Color getTileColor(int row, int col) {
+        if ((row + col) % 2 == 0) {
+            return Color.BEIGE;
+        } else {
+            return Color.BURLYWOOD;
+        }
+    }
 
     public static void queenPlacement(GridPane gridPane, int size, int i, int j){
         // Load the queen image
         Image BlackqueenImage = new Image(Application.class.getResourceAsStream("resources/images/BlackQueen.png"));
-        Image WhitequeenImage = new Image(Application.class.getResourceAsStream("resources/images/Queen.png"));
+        Image WhitequeenImage = new Image(Application.class.getResourceAsStream("resources/images/WhiteQueen.png"));
         // Create an ImageView for the queen image
         ImageView BlackQueenImageView = new ImageView(BlackqueenImage);
         ImageView WhiteQueenImageView = new ImageView(WhitequeenImage);
         // Set the size of the queen image view to match the size of a tile
         //Black Queen
-        BlackQueenImageView.setFitWidth(TILE_SIZE);
-        BlackQueenImageView.setFitHeight(TILE_SIZE);
-        GridPane.setRowIndex(BlackQueenImageView , i);
-        GridPane.setColumnIndex(BlackQueenImageView , j);
-        gridPane.getChildren().add(BlackQueenImageView );
+        if (getTileColor(i,j) == Color.BEIGE){
+            BlackQueenImageView.setFitWidth(TILE_SIZE);
+            BlackQueenImageView.setFitHeight(TILE_SIZE);
+            GridPane.setRowIndex(BlackQueenImageView , i);
+            GridPane.setColumnIndex(BlackQueenImageView , j);
+            gridPane.getChildren().add(BlackQueenImageView);
+        }
+        else {
+            WhiteQueenImageView.setFitWidth(TILE_SIZE);
+            WhiteQueenImageView.setFitHeight(TILE_SIZE);
+            GridPane.setRowIndex(WhiteQueenImageView , i);
+            GridPane.setColumnIndex(WhiteQueenImageView , j);
+            gridPane.getChildren().add(WhiteQueenImageView);
+        }
+
 
     }
-
 
     public static void queenArrayPlacement (int[] node, GridPane gridPane, int size)
     {
@@ -86,4 +105,14 @@ public class Application  {
             queenPlacement( gridPane,  size,  i,  node[i]);
         }
     }
-}
+
+    public static void clearBoard(GridPane gridPane) {
+
+        // Remove all ImageViews representing queens from the grid pane
+        gridPane.getChildren().removeIf(child -> child instanceof ImageView && ((ImageView) child).getImage() != null);
+    }
+
+
+
+    }
+

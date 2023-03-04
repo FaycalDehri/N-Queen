@@ -15,11 +15,15 @@ public class Controller implements Initializable {
     private Label MyStats;
     @FXML
     private Button MyRun;
-
+    @FXML
+    private Button MyNext;
+    @FXML
+    private Button MyPrevious;
     @FXML
     private ChoiceBox<String> MyChoiceBox;
     private String[] choices={"DFS","BFS","Heuristic"};
     private static int BOARD_SIZE;
+
     public static void setBOARD_SIZE(int SIZE) {
         BOARD_SIZE = SIZE*50;
     }
@@ -35,8 +39,15 @@ public class Controller implements Initializable {
         MyChoiceBox.setLayoutX(BOARD_SIZE+100);
         MyChoiceBox.setLayoutY(MyLabel.getLayoutY() + 40);
 
+        //Position of MyNext
+        MyNext.setLayoutX(BOARD_SIZE-70);
+        MyNext.setLayoutY(BOARD_SIZE+25);
+
+        //Position of MyPrevious
+        MyPrevious.setLayoutY(BOARD_SIZE+25);
+
         //Position of MyStats
-        MyStats.setLayoutY(BOARD_SIZE+25);
+        MyStats.setLayoutY(BOARD_SIZE+65);
 
         //Position of MyRun
         MyRun.setLayoutX(BOARD_SIZE+140);
@@ -50,4 +61,6 @@ public class Controller implements Initializable {
         String myChoice = MyChoiceBox.getValue();
         MyLabel.setText(myChoice);
     }
+
+
 }

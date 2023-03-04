@@ -5,7 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 
 public class Main extends javafx.application.Application  {
-
+    int userChoice = 0;
     public static void printArray(int[] t){
         for(int i : t){
             System.out.print(i+" ");
@@ -42,14 +42,25 @@ public class Main extends javafx.application.Application  {
         //Search Algorithms Execution
         //DFS
         ArrayList<int[]> temp = new ArrayList<int []>();
-        int[] solution = DFS.search(size, temp);
+        ArrayList<int[]> solution = DFS.search(size, temp);
 
-        for(int []i : temp){
-            printArray(i);
-        }
+            if (!solution.isEmpty())
+            {
+
+                int[] node = solution.get(userChoice);
+                System.out.println("Solution in display");
+                printArray(node);
+                Application.queenArrayPlacement (node,  gridPane,  size);
+            }
+            else System.out.println("solution is empty");
+
+
+//        for(int []i : temp){
+//            printArray(i);
+//        }
         //Place the queens on the board
-        int row,col;
-        Application.queenPlacement( gridPane, size,5,1);
+//        int row,col;
+//        Application.queenPlacement( gridPane, size,5,1);
 
     }
 

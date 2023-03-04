@@ -76,4 +76,14 @@ public class Application  {
         gridPane.getChildren().add(BlackQueenImageView );
 
     }
+
+
+    public static void queenArrayPlacement (int[] node, GridPane gridPane, int size)
+    {
+
+        for ( int i : node)
+        {
+            queenPlacement( gridPane,  size,  i,  node[i]);
+        }
+    }
 }

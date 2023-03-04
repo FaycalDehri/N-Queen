@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    private Label MyLabel;
+    private  Label MyLabel;
     @FXML
     private Label MyStats;
     @FXML
@@ -20,8 +20,8 @@ public class Controller implements Initializable {
     @FXML
     private Button MyPrevious;
     @FXML
-    private ChoiceBox<String> MyChoiceBox;
-    private String[] choices={"DFS","BFS","Heuristic"};
+    private  ChoiceBox<String> MyChoiceBox;
+    private  String[] choices={"DFS","BFS","Heuristic"};
     private static int BOARD_SIZE;
 
     public static void setBOARD_SIZE(int SIZE) {
@@ -57,10 +57,11 @@ public class Controller implements Initializable {
         MyChoiceBox.getItems().addAll(choices);
         MyChoiceBox.setOnAction(this::getChoice);
     }
-    public void getChoice (ActionEvent event) {
+    public void getChoice(ActionEvent event) {
         String myChoice = MyChoiceBox.getValue();
         MyLabel.setText(myChoice);
     }
+
 
 
 }

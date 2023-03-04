@@ -37,30 +37,24 @@ public class Main extends javafx.application.Application  {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+                //Search Algorithms Execution
+                //DFS
+                ArrayList<int[]> temp = new ArrayList<int []>();
+                ArrayList<int[]> solution = DFS.search(size, temp);
+
+                if (!solution.isEmpty())
+                {
+
+                    int[] node = solution.get(userChoice);
+                    System.out.println("Solution in display");
+                    printArray(node);
+                    Application.queenArrayPlacement (node,  gridPane,  size);
+
+                }
+                else System.out.println("solution is empty");
 
 
-        //Search Algorithms Execution
-        //DFS
-        ArrayList<int[]> temp = new ArrayList<int []>();
-        ArrayList<int[]> solution = DFS.search(size, temp);
 
-            if (!solution.isEmpty())
-            {
-
-                int[] node = solution.get(userChoice);
-                System.out.println("Solution in display");
-                printArray(node);
-                Application.queenArrayPlacement (node,  gridPane,  size);
-            }
-            else System.out.println("solution is empty");
-
-
-//        for(int []i : temp){
-//            printArray(i);
-//        }
-        //Place the queens on the board
-//        int row,col;
-//        Application.queenPlacement( gridPane, size,5,1);
 
     }
 

@@ -12,7 +12,7 @@ public class Main {
         int n = 4
                 ;
         ArrayList<int[]> temp = new ArrayList<int []>();
-        int[] solution = DFS.search(n, temp);
+        int[] solution = BFS.search(n, temp);
 
         if (solution == null) {
             System.out.println("No solution found.");

@@ -43,18 +43,20 @@ public class DFS {
 
             }
 
-            node.genChildren();
+            ArrayList<Node> children = new ArrayList<>();
+            children = node.genChildren();
 
 
-            for(Node i : node.getChildren()){
+            for(Node i : children){
                 searchSpace.add(i.getState());
             }
 
-            for (int i = node.getChildren().size() - 1; i >= 0; i--) {
-                stack.push(node.getChildren().get(i));
+            for (int i = children.size() - 1; i >= 0; i--) {
+                stack.push(children.get(i));
             }
         }
 
         return null;
     }
+
 }

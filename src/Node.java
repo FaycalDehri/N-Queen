@@ -5,22 +5,27 @@ public class Node {
     private int[] state; // current state
     private int n; // that's why the game is called n-queen...haha..end me
     private int level; // depth of the search space ... get it ? DEPTH first search ... haha
-    private List<Node> children; // All the possible states that we can go to given a certain node
+
+    private int g; //g(x)
+    private int h;//h(x)
 
     public Node(int n) {
         this.n = n;
         state = new int[n];
         level = 0;
-        children = new ArrayList<>();
+
+        g = 0;
+        h = 0;
+
     }
     public Node(int[] state, int level, int n) {
         this.n = n;
         this.level = level;
         this.state = new int[n];
-        for (int i = 0; i < n; i++) {
-            this.state[i] = state[i];
-        }
-        children = new ArrayList<>();
+        System.arraycopy(state, 0, this.state, 0, n);
+
+        g = 0;
+        h = 0;
     }
     public int[] getState() {
         return state;
@@ -33,13 +38,24 @@ public class Node {
         return n;
     }
 
-    public List<Node> getChildren() {
-        return children;
+        public int getG(){
+            return g;
+        }
+        public int getH(){
+        return h;
+        }
+
+        public void setG(int g){
+            this.g=g;
+        }
+        public void setH(int h) {
+        this.h = h;
     }
 
 
     //This methode is used to generate all the possible next nodes of the search space
-    public void genChildren() {
+    public ArrayList<Node> genChildren() {
+        ArrayList<Node> children = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
             //first we check if the queen doesnt risk being attacked in the new placement
@@ -53,11 +69,12 @@ public class Node {
                 children.add(child);
             }
         }
+        return children;
     }
 
 
 
-    private boolean isValid(int col) {
+    public boolean isValid(int col) {
 
         for (int i = 0; i < level; i++) {
             //checks if any queen is on the same column as the current queen
@@ -71,4 +88,6 @@ public class Node {
         }
         return true;
     }
+
+
 }

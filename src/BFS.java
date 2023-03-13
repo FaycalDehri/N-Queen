@@ -42,14 +42,16 @@ public class BFS {
                 }
             }
 
-            node.genChildren();
+            ArrayList<Node> children = new ArrayList<>();
 
-            for(Node i : node.getChildren()){
+            children = node.genChildren();
+
+            for(Node i :children){
                 searchSpace.add(i.getState());
             }
 
-            for (int i = 0; i < node.getChildren().size(); i++) {
-                queue.offer(node.getChildren().get(i));
+            for (int i = 0; i < children.size(); i++) {
+                queue.offer(children.get(i));
             }
         }
 

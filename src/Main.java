@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -9,10 +10,20 @@ public class Main {
         System.out.println();
     }
     public static void main(String[] args) {
-        int n = 4
-                ;
+        int n = 4;
+
+;
+        ManhattanDistance h = new ManhattanDistance();
         ArrayList<int[]> temp = new ArrayList<int []>();
+        ArrayList<int[]> temp2 = new ArrayList<int []>();
+      // AStar a = new AStar(h);
+//       int[] solution = a.search(n);
+
         int[] solution = BFS.search(n, temp);
+        //int[] solution2 = BFS.search(n, temp2);
+
+        System.out.println(Arrays.toString(solution));
+
 
         if (solution == null) {
             System.out.println("No solution found.");
@@ -30,9 +41,14 @@ public class Main {
             }
         }
 
-        for(int []i : temp){
-            printArray(i);
-        }
+//        for(int []i : temp){
+//            printArray(i);
+//        }
+
+//        System.out.println(temp.size());
+//        System.out.println(temp2.size());
+
     }
+
 
 }

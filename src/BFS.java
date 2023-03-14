@@ -1,60 +1,50 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 
 public class BFS {
-    public static void printArray(int[] t){
-        for(int i : t){
-            System.out.print(i+" ");
+    public static void printArray(int[] t) {
+        for (int i : t) {
+            System.out.print(i + " ");
         }
         System.out.println();
     }
 
-    public static int[] search(int n, ArrayList<int[]> searchSpace) {
+    public static int[] search(int n) {
         Queue<Node> queue = new LinkedList<>();
-        //ArrayList<int[]> solutions = new ArrayList<int[]>();
+        ArrayList<Node> solutions = new ArrayList<>();
+        ArrayList<Node> children = new ArrayList<>();
 
         Node root = new Node(n);
-        queue.offer(root);
+        queue.add(root);
 
         while (!queue.isEmpty()) {
             Node node = queue.poll();
 
+            Main.generatedNodes++;
+
             if (node.getLevel() == n) {
 
-                //searchSpace.add(node.getState());
-                //prints the solution
-                System.out.println("Solution found: " );
-                //solutions.add(node.getState());
-                printArray(node.getState());
-
-                //this parts takes of asking the user if they want another solution
-                Scanner scanner = new Scanner(System.in);
-                System.out.print("Do you want another solution? (Y/N): ");
-                String response = scanner.nextLine();
-
-                //We need to make sure that each generated solution is unique
-                if (response.equalsIgnoreCase("Y")) {
-                    continue;
+                if (node.evaluate()) {
+                    solutions.add(node);
+                    break;
                 } else {
-                    return node.getState();
+                    continue;
                 }
-            }
 
-            ArrayList<Node> children = new ArrayList<>();
+            }
 
             children = node.genChildren();
+            Main.developedNodes++;
 
-            for(Node i :children){
-                searchSpace.add(i.getState());
-            }
-
-            for (int i = 0; i < children.size(); i++) {
-                queue.offer(children.get(i));
-            }
+            queue.addAll(children);
         }
 
-        return null;
+
+        if (solutions.isEmpty()) {
+            return null;
+        } else {
+            return solutions.get(0).getState();
+        }
     }
 }

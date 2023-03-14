@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class DFS {
+
+//This is a second implementation of DFS that doesnt generate nodes if we are sure they wont lead to a solution
+//i.e the number of generated nodes = the number of developped nodes - 1 (The leaf node)
+public class DFS2 {
     public static void printArray(int[] t){
         for(int i : t){
             System.out.print(i+" ");
@@ -17,6 +20,8 @@ public class DFS {
         ArrayList<Node> solutions = new ArrayList<Node>();
 
         //Counters for generated and developped nodes
+        int developedNodes = 0;
+        int generatedNodes = 0;
 
         Node root = new Node(n);
         stack.push(root);
@@ -24,13 +29,11 @@ public class DFS {
         while (!stack.empty()) {
             Node node = stack.pop();
 
-            //we increment each time there is a new node being explored
-            Main.generatedNodes++;
+            generatedNodes ++;
 
-
-            //Once we reach the leaf
             if (node.getLevel() == n) {
-                //if it's a valid solution we take it and stop
+
+                printArray(node.getState());
                 if(node.evaluate()){
                     solutions.add(node);
                     break;
@@ -40,14 +43,18 @@ public class DFS {
 
             }
 
-            ArrayList<Node> children = node.genChildren();
-            Main.developedNodes++;
+
+            ArrayList<Node> children = node.genSmartChildren();
+            developedNodes++;
 
             for (int i = children.size() - 1; i >= 0; i--) {
                 stack.push(children.get(i));
             }
 
         }
+
+
+        System.out.println("Generated nodes : " + generatedNodes +" Developped nodes : " + developedNodes);
 
         if(solutions.isEmpty()){
             return null;

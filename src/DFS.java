@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class DFS {
+    static int generatedNodes= 0;
     public static void printArray(int[] t){
         for(int i : t){
             System.out.print(i+" ");
@@ -16,7 +17,7 @@ public class DFS {
         ArrayList<int[]> ArraySolutions = new ArrayList<int[]>(n);
         //ArrayList<int[]> solutions = new ArrayList<int[]>();
 
-        Node root = new Node(n);
+        Node root = new Node(n); generatedNodes++;
         stack.push(root);
 
 
@@ -28,7 +29,9 @@ public class DFS {
                 //prints the solution
                 //System.out.println("Solution found: ");
                 //solutions.add(node.getState());
-
+                if (ArraySolutions.isEmpty()) {
+                    System.out.println("first solution found" + generatedNodes);
+                }
                     ArraySolutions.add(node.getState());
                     //printArray(node.getState());
 
@@ -49,7 +52,8 @@ public class DFS {
 
             }
 
-            node.genChildren();
+            node.genChildren(); generatedNodes++; generatedNodes++;
+//            System.out.println("node number " + generatedNodes);
 
 
             for (Node i : node.getChildren()) {

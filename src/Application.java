@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -26,7 +27,13 @@ public class Application  {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(1);
         gridPane.setVgap(1);
+
+//        ScrollPane scrollPane = new ScrollPane(); // Create a ScrollPane
+//        scrollPane.setContent(gridPane); // Set the content of the ScrollPane to be the GridPane
         return gridPane;
+
+
+
     }
     public static void tileCreation(GridPane gridPane, int size){
         // Create the tiles and add them to the grid pane
@@ -71,7 +78,7 @@ public class Application  {
     }
 
     public static void queenPlacement(GridPane gridPane, int size, int i, int j){
-        // Load the queen image
+        // Load the queen image QueenDerias QueenMoulai BlackQueen WhiteQueen
         Image BlackqueenImage = new Image(Application.class.getResourceAsStream("resources/images/BlackQueen.png"));
         Image WhitequeenImage = new Image(Application.class.getResourceAsStream("resources/images/WhiteQueen.png"));
         // Create an ImageView for the queen image
@@ -93,7 +100,6 @@ public class Application  {
             GridPane.setColumnIndex(WhiteQueenImageView , j);
             gridPane.getChildren().add(WhiteQueenImageView);
         }
-
 
     }
 

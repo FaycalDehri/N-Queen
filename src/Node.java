@@ -60,12 +60,14 @@ public class Node {
     private boolean isValid(int col) {
 
         for (int i = 0; i < level; i++) {
+
             //checks if any queen is on the same column as the current queen
             if (state[i] == col) {
                 return false;
             }
             //checks if any queen is on the same diagonal as the current queen
             if (level - i == Math.abs(col - state[i])) {
+
                 return false;
             }
         }

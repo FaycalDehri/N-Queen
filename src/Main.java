@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
@@ -11,7 +12,8 @@ public class Main extends javafx.application.Application  {
     private static int size;
 
     private static GridPane gridPane;
-    String userSearchMethodChoice ="DFS";
+
+
 
 
     public int getSize(){
@@ -33,6 +35,8 @@ public class Main extends javafx.application.Application  {
         //Creating the gridPane for the ChessBoard
         gridPane = Application.chessBoardCreation();
 
+//        ScrollPane scrollPane = new ScrollPane(); // Create a ScrollPane
+//        scrollPane.setContent(gridPane); // Set the content of the ScrollPane to be the GridPane
         //Input size of ChessBoard from user
         size =Application.input();
 
@@ -40,11 +44,13 @@ public class Main extends javafx.application.Application  {
         Application.tileCreation( gridPane, size);
 
         // Create the scene
-        Group root = new Group(gridPane);
-        Scene scene = new Scene(root, size * 100, size * 100);
-
-        //Load Controller Class
         Controller control = new Controller();
+
+        Group root = new Group(gridPane);
+       Scene scene = new Scene(root, size * 100, size * 100);
+//        Scene scene = new Scene(control.getContainerLevel1(), control.getContainerWidth(), control.getContainerHeight());
+        //Load Controller Class
+
         Application.FXMLLoader( root, size);
 
 
@@ -59,20 +65,22 @@ public class Main extends javafx.application.Application  {
 
     public  static void SearchMethodSelection(String userSearchMethodChoice, int size , GridPane gridPane, int Choice) throws IOException {
         int userChoice = Choice;
+        ArrayList<int[]> SearchSpace = new ArrayList<int[]>();
+        ArrayList<int[]> solutionArr ;
         Main main = new Main();
         switch (userSearchMethodChoice) {
             case "DFS": {
                 //Search Algorithms Execution
                 //DFS
-                ArrayList<int[]> temp = new ArrayList<int[]>();
-                ArrayList<int[]> solution = DFS.search(main.getSize(), temp);
 
-                if (!solution.isEmpty()) {
-                    if (solution.size() <= userChoice){
+                solutionArr = DFS.search(main.getSize(), SearchSpace);
+
+                if (!solutionArr.isEmpty()) {
+                    if (solutionArr.size() <= userChoice){
                         System.out.println("Solution ended");
                     }
                     else {
-                        int[] node = solution.get(userChoice);
+                        int[] node = solutionArr.get(userChoice);
                         System.out.println("Solution in display");
                         System.out.println(size);
                         printArray(node);
@@ -81,9 +89,26 @@ public class Main extends javafx.application.Application  {
 
                 } else System.out.println("solution is empty");
             } break;
-//            case "BFS":{
-//                System.out.println("no bfs yet");
-//            }break;
+            case "BFS":{
+                //Search Algorithms Execution
+                //DFS
+
+                solutionArr = BFS.search(main.getSize(), SearchSpace);
+
+                if (!solutionArr.isEmpty()) {
+                    if (solutionArr.size() <= userChoice){
+                        System.out.println("Solution ended");
+                    }
+                    else {
+                        int[] node = solutionArr.get(userChoice);
+                        System.out.println("Solution in display");
+                        System.out.println(size);
+                        printArray(node);
+                        Application.queenArrayPlacement(node, gridPane, size);
+                    }
+
+                } else System.out.println("solution is empty");
+            }break;
 //            case "Heuristic":{
 //                System.out.println("no Heuristic yet");
 //            } break;

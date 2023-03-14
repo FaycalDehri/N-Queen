@@ -3,36 +3,148 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="1048.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ContainerLevel1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="1048.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <ChoiceBox fx:id="MyChoiceBox" layoutX="383.0" layoutY="109.0" prefWidth="150.0" />
-      <Label fx:id="MyLabel" alignment="CENTER" layoutX="344.0" layoutY="58.0" prefHeight="43.0" prefWidth="227.0" text="Select Algorithm">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="MyStats" alignment="CENTER" layoutX="1.0" layoutY="241.0" prefHeight="25.0" prefWidth="67.0" text="Statistics">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="MyRun" layoutX="383.0" layoutY="177.0" mnemonicParsing="false" text="Run" onAction="#handleMyRunButton">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="MyNext" layoutX="119.0" layoutY="216.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="Next">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="MyPrevious" layoutX="35.0" layoutY="216.0" mnemonicParsing="false" text="Previous">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
+      <SplitPane dividerPositions="0.7056396148555708" orientation="VERTICAL" prefHeight="729.0" prefWidth="1048.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" prefHeight="516.0" prefWidth="1046.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <SplitPane dividerPositions="0.8735955056179775" orientation="VERTICAL" prefHeight="358.0" prefWidth="519.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="476.0" prefWidth="517.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="189.0" prefWidth="517.0">
+                                       <children>
+                                          <Button fx:id="MyNext" layoutX="160.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="Next">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="MyClearBoard" layoutX="396.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Clear Board">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="MyPrevious" layoutX="7.0" layoutY="16.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="Previous">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <SplitPane dividerPositions="0.236328125" layoutX="6.0" orientation="VERTICAL" prefHeight="514.0" prefWidth="519.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="517.0">
+                                       <children>
+                                          <ChoiceBox fx:id="MyChoiceBox" layoutX="194.0" layoutY="66.0" prefWidth="150.0" />
+                                          <Label fx:id="MyLabel" alignment="CENTER" layoutX="14.0" layoutY="57.0" prefHeight="43.0" prefWidth="168.0" text="Select Search Algorithm:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="MyDisplayBoard" layoutX="361.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" text="Display Board">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="MyEnterBoardSize" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="168.0" text="Enter Board Size:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="FieldBoardSize" layoutX="195.0" layoutY="23.0" />
+                                          <Button fx:id="MyRun" layoutX="361.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleMyRunButton" prefHeight="31.0" prefWidth="133.0" text="Run Algorithm">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="517.0">
+                                       <children>
+                                          <Label fx:id="MySolutions" alignment="CENTER" layoutY="2.0" prefHeight="25.0" prefWidth="92.0" text="Solutions">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea fx:id="FieldSolutionsFound" layoutX="14.0" layoutY="144.0" prefHeight="234.0" prefWidth="494.0" />
+                                          <Label fx:id="MySolutionInDisplay" alignment="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="31.0" prefWidth="133.0" text="Solution In Display">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea fx:id="FieldSolutionInDisplay" layoutX="14.0" layoutY="65.0" prefHeight="43.0" prefWidth="494.0" />
+                                          <Label fx:id="MySolutionsFound" alignment="CENTER" layoutX="14.0" layoutY="113.0" prefHeight="31.0" prefWidth="133.0" text="Solutions Found">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="249.0" prefWidth="1046.0">
+               <children>
+                  <Label fx:id="MyStats" alignment="CENTER" layoutX="130.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" text="Statistics">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="MyStats10" alignment="CENTER_LEFT" layoutX="14.0" layoutY="30.0" prefHeight="25.0" prefWidth="183.0" text="Time Taken:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                   <TextField fx:id="FieldTimeTaken" layoutX="207.0" layoutY="30.0" />
+                   <Label fx:id="MyStats11" alignment="CENTER_LEFT" layoutX="14.0" layoutY="60.0" prefHeight="25.0" prefWidth="183.0" text="Memory Usage:">
+                       <font>
+                           <Font size="14.0" />
+                       </font>
+                   </Label>
+                   <TextField fx:id="FieldMemoryUsage" layoutX="207.0" layoutY="63.0" />
+                  <Label fx:id="MyStats12" alignment="CENTER_LEFT" layoutX="14.0" layoutY="90.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Before First Solution:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                   <TextField fx:id="FieldNodesBeforeFirstSolution" layoutX="207.0" layoutY="90.0" />
+                   <Label fx:id="MyStats13" alignment="CENTER_LEFT" layoutX="14.0" layoutY="120.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Generated In Total:">
+                       <font>
+                           <Font size="14.0" />
+                       </font>
+                   </Label>
+                   <TextField fx:id="FieldNodesGeneratedInTotal" layoutX="207.0" layoutY="120.0" />
+                   <Label fx:id="MyStats14" alignment="CENTER_LEFT" layoutX="14.0" layoutY="150.0" prefHeight="25.0" prefWidth="183.0" text="Solutions Found:">
+                       <font>
+                           <Font size="14.0" />
+                       </font>
+                   </Label>
+                   <TextField fx:id="FieldSolutionsFoundStats" layoutX="207.0" layoutY="150.0" />
+
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>

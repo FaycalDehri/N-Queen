@@ -87,13 +87,17 @@ public class Node {
         return parent;
     }
 
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+
     //This methode is used to generate all the possible next nodes of the search space
     public ArrayList<Node> genChildren() {
         ArrayList<Node> children = new ArrayList<>();
 
         for (int i = 0; i <n; i++) {
             //first we check if the queen doesnt risk being attacked in the new placement
-            if (level < n) {
+            if (level < n && checkColumnsOnly(i)) {
                 //we copy the exact current state than add a new placement in the following column
                 int[] childState  = state.clone();
                // System.arraycopy(state, 0, childState, 0, n);
@@ -139,6 +143,16 @@ public class Node {
             }
             //checks if any queen is on the same diagonal as the current queen
             if (level - i == Math.abs(col - state[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean checkColumnsOnly(int col) {
+        for (int i = 0; i < level; i++) {
+            // If the new placement is in the same column as an existing queen
+            // then it is not safe (attacking)
+            if (state[i] == col) {
                 return false;
             }
         }

@@ -30,14 +30,14 @@ public class DFS {
                 //System.out.println("Solution found: ");
                 //solutions.add(node.getState());
                 if (ArraySolutions.isEmpty()) {
-                    System.out.println("first solution found" + generatedNodes);
+//                    System.out.println("first solution found after" + generatedNodes );
                 }
                     ArraySolutions.add(node.getState());
-                    //printArray(node.getState());
+//                    printArray(node.getState());
 
                //printArray(node.getState());
 
-                //this parts takes of asking the user if they want another solution
+//                //this parts takes of asking the user if they want another solution
 //                Scanner scanner = new Scanner(System.in);
 //                System.out.print("Do you want another solution? (Y/N): ");
 //                String response = scanner.nextLine();
@@ -46,7 +46,7 @@ public class DFS {
 //                if (response.equalsIgnoreCase("Y")) {
 //                    continue;
 //                } else {
-//                    return node.getState();
+//                   return ArraySolutions;
 //                }
 
 

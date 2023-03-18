@@ -20,16 +20,12 @@
                         <AnchorPane fx:id="ChessBoardAnchor" minHeight="0.0" minWidth="0.0" prefHeight="661.0" prefWidth="544.0" />
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="76.0" prefWidth="518.0">
                            <children>
-                              <Button fx:id="MyPrevious" layoutX="59.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="Previous">
+                              <Label fx:id="MySolutionInDisplay" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="124.0" text="Solution In Display: ">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="14.0" />
                                  </font>
-                              </Button>
-                              <Button fx:id="MyNext" layoutX="380.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="Next">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
+                              </Label>
+                              <Label fx:id="FieldSolutioninDisplay" layoutX="149.0" layoutY="3.0" prefHeight="53.0" prefWidth="370.0" text="None" />
                            </children>
                         </AnchorPane>
                      </items>
@@ -73,48 +69,42 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextFlow fx:id="FieldDescription" layoutX="18.0" layoutY="47.0" prefHeight="170.0" prefWidth="472.0" />
-                              <Label fx:id="MySolutionInDisplay" alignment="CENTER" layoutX="14.0" layoutY="234.0" prefHeight="31.0" prefWidth="133.0" text="Solution In Display">
+                              <TextFlow fx:id="FieldDescription" layoutX="11.0" layoutY="44.0" prefHeight="306.0" prefWidth="483.0" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="44.0" />
+                              <Label fx:id="MyStats" alignment="CENTER" layoutX="226.0" layoutY="345.0" prefHeight="25.0" prefWidth="67.0" text="Statistics">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="FieldSolutioninDisplay" layoutX="16.0" layoutY="272.0" prefHeight="53.0" prefWidth="472.0" text="None" />
-                              <Label fx:id="MyStats" alignment="CENTER" layoutX="226.0" layoutY="341.0" prefHeight="25.0" prefWidth="67.0" text="Statistics">
+                              <Label fx:id="MyStats10" alignment="CENTER_LEFT" layoutX="56.0" layoutY="404.0" prefHeight="25.0" prefWidth="183.0" text="Time Taken:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="MyStats10" alignment="CENTER_LEFT" layoutX="56.0" layoutY="400.0" prefHeight="25.0" prefWidth="183.0" text="Time Taken:">
+                              <Label fx:id="StatT" layoutX="259.0" layoutY="404.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+                              <Label fx:id="MyStats11" alignment="CENTER_LEFT" layoutX="56.0" layoutY="434.0" prefHeight="25.0" prefWidth="183.0" text="Memory Usage:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="StatT" layoutX="259.0" layoutY="400.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
-                              <Label fx:id="MyStats11" alignment="CENTER_LEFT" layoutX="56.0" layoutY="430.0" prefHeight="25.0" prefWidth="183.0" text="Memory Usage:">
+                              <Label fx:id="StatM" layoutX="259.0" layoutY="434.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+                              <Label fx:id="MyStats12" alignment="CENTER_LEFT" layoutX="56.0" layoutY="464.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Generated:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="StatM" layoutX="259.0" layoutY="430.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
-                              <Label fx:id="MyStats12" alignment="CENTER_LEFT" layoutX="56.0" layoutY="460.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Generated:">
+                              <Label fx:id="StatG" layoutX="259.0" layoutY="464.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+                              <Label fx:id="MyStats13" alignment="CENTER_LEFT" layoutX="56.0" layoutY="494.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Developped:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="StatG" layoutX="259.0" layoutY="460.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
-                              <Label fx:id="MyStats13" alignment="CENTER_LEFT" layoutX="56.0" layoutY="490.0" prefHeight="25.0" prefWidth="183.0" text="Nodes Developped:">
+                              <Label fx:id="StatD" layoutX="259.0" layoutY="494.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+                              <Label fx:id="MyStats14" alignment="CENTER_LEFT" layoutX="56.0" layoutY="524.0" prefHeight="25.0" prefWidth="183.0" text="Total solutions">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="StatD" layoutX="259.0" layoutY="490.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
-                              <Label fx:id="MyStats14" alignment="CENTER_LEFT" layoutX="56.0" layoutY="520.0" prefHeight="25.0" prefWidth="183.0" text="Total solutions">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="StatS" layoutX="259.0" layoutY="520.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+                              <Label fx:id="StatS" layoutX="259.0" layoutY="524.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
                            </children>
                         </AnchorPane>
                      </items>

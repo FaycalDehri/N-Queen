@@ -26,32 +26,32 @@ public class DFS2 {
         Node root = new Node(n);
         stack.push(root);
 
-//        while (!stack.empty()) {
-//            Node node = stack.pop();
-//
-//            generatedNodes ++;
-//
-//            if (node.getLevel() == n) {
-//
-//                printArray(node.getState());
-//                if(node.evaluate()){
-//                    solutions.add(node);
-//                    break;
-//                }else{
-//                    continue;
-//                }
-//
-//            }
-//
-//
-//            ArrayList<Node> children = node.genSmartChildren();
-//            developedNodes++;
-//
-//            for (int i = children.size() - 1; i >= 0; i--) {
-//                stack.push(children.get(i));
-//            }
-//
-//        }
+        while (!stack.empty()) {
+            Node node = stack.pop();
+
+            generatedNodes ++;
+
+            if (node.getLevel() == n) {
+
+                printArray(node.getState());
+                if(node.evaluate()){
+                    solutions.add(node);
+                    break;
+                }else{
+                    continue;
+                }
+
+            }
+
+
+            ArrayList<Node> children = node.genSmartChildren();
+            developedNodes++;
+
+            for (int i = children.size() - 1; i >= 0; i--) {
+                stack.push(children.get(i));
+            }
+
+        }
 
 
         System.out.println("Generated nodes : " + generatedNodes +" Developped nodes : " + developedNodes);
@@ -67,5 +67,3 @@ public class DFS2 {
 
 
 }
-
-

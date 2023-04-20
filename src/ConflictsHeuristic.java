@@ -1,3 +1,4 @@
+
 public class ConflictsHeuristic implements Heuristic {
     public int evaluate(Node node) {
         int[] state = node.getState();

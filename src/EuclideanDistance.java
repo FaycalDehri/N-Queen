@@ -1,3 +1,4 @@
+
 public class EuclideanDistance implements Heuristic {
     public int evaluate(Node node) {
         int dist = 0;

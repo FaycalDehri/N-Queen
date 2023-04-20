@@ -1,9 +1,11 @@
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
 
-//This is a second implementation of DFS that doesnt generate nodes if we are sure they wont lead to a solution
+//This is a second implementation of Blind.DFS that doesnt generate nodes if we are sure they wont lead to a solution
 //i.e the number of generated nodes = the number of developped nodes - 1 (The leaf node)
 public class DFS2 {
     public static void printArray(int[] t){

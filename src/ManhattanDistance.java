@@ -1,4 +1,5 @@
 
+
 //The way manhattan distance works is basically it will calculate the vertical distance separating 2 points
 //then calculate the vertical distance and add them up, it doesn't take to consideration to diagonal distance
 // which will be useful in case there is a direct attack between our queens but not a diagonal one

@@ -1,4 +1,7 @@
 package GA;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -322,17 +325,101 @@ public class GeneticAlgorithm {
             if(population.get(0).getFitnessScore()<bestIndividual.getFitnessScore()){
                 bestIndividual = population.get(0);
             }
-            //System.out.println(Arrays.toString(population.get(0).getChromosome()) + "Score : "+ population.get(0).getFitnessScore());
+          //  System.out.println(Arrays.toString(population.get(0).getChromosome()) + "Score : "+ population.get(0).getFitnessScore());
             //System.out.println("Generation number " + generationCounter);
             generationCounter++;
         }
 
-        System.out.println("Generation Number "+ generationCounter);
+       // System.out.println("Generation Number "+ generationCounter);
         return bestIndividual;
 
     }
 
 
+    public static void tuning(int n, int maxGenerations,String bestSolutions,String allSolutions) throws IOException {
+        int[] bestParam;
+        int[] params;
+        int minGen=99999;
+        double bestRate=0;
+        double successRate=0;
+
+        FileWriter writer1 = new FileWriter(bestSolutions);
+        FileWriter writer2 = new FileWriter(allSolutions);
+        BufferedWriter bestSolWriter = new BufferedWriter(writer1);
+        BufferedWriter allSolWriter = new BufferedWriter(writer2);
+
+        allSolWriter.write("n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate\n");
+        bestSolWriter.write("n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate\n");
+        bestSolWriter.flush();
+        allSolWriter.flush();
+
+        Individual guy;
+        for(int populationSize=5;populationSize<=20;populationSize++){
+            System.out.println("population size is "+populationSize);
+            for(int crossoverType=1;crossoverType<=2;crossoverType++){
+                for(int selectionType=1;selectionType<=3;selectionType++){
+                    for(int replacementType=1;replacementType<=2;replacementType++){
+                        for(double mutationRate=0;mutationRate<=1;mutationRate=mutationRate+0.1){
+                            for (int numberOfParents=2;numberOfParents<populationSize;numberOfParents++){
+                                if(crossoverType==1){
+                                    params= new int[]{populationSize,crossoverType,selectionType,replacementType, (int) (mutationRate*100),numberOfParents};
+                                    for (int i=0;i<50;i++){
+                                        guy = search(n,populationSize,selectionType,numberOfParents,crossoverType,1,mutationRate,replacementType,maxGenerations);
+                                        if(guy.getFitnessScore()==0){
+                                            successRate++;
+                                        }
+
+                                    }
+                                    if(bestRate<successRate){
+                                        bestParam=params;
+                                        bestRate=successRate;
+                                        bestSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+                                                +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+                                        bestSolWriter.flush();
+
+                                    }
+                                    allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+                                            +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+                                    allSolWriter.flush();
+                                    successRate=0;
+                                }else{
+                                    for (int crossOverPoints=1;crossOverPoints<n;crossOverPoints++){
+                                        params= new int[]{populationSize,crossoverType,selectionType,replacementType, (int) (mutationRate*100),numberOfParents,crossOverPoints};
+
+                                        for(int i=0;i<50;i++){
+                                            guy = search(n,populationSize,selectionType,numberOfParents,crossoverType,crossOverPoints,mutationRate,replacementType,maxGenerations);
+                                            if(guy.getFitnessScore()==0){
+                                                successRate++;
+                                            }
+                                            if(bestRate<successRate){
+                                                bestParam=params;
+                                                bestRate=successRate;
+                                                bestSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+                                                        +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+                                                bestSolWriter.flush();
+
+
+                                            }
+                                            allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+                                                    +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+                                            allSolWriter.flush();
+                                            successRate=0;
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        allSolWriter.close();
+        bestSolWriter.close();
+
+    }
 
 
 }

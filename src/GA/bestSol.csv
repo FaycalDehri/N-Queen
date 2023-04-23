@@ -1,0 +1,7 @@
+n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate
+8,5,1,1,1,0.0,3,1,2.0
+8,5,1,1,1,0.0,4,1,4.0
+8,5,1,1,1,0.1,2,1,72.0
+8,5,1,1,1,0.1,4,1,90.0
+8,5,1,1,1,0.6,4,1,96.0
+8,5,1,1,1,0.7999999999999999,4,1,98.0

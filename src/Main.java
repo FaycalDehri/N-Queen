@@ -50,7 +50,7 @@ public class Main extends javafx.application.Application  {
 
         System.out.println(board.toString());
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
 //        int n = 8;
@@ -123,11 +123,22 @@ public class Main extends javafx.application.Application  {
 //        }
 
         Individual solution = new Individual();
-        solution = GeneticAlgorithm.search(10,40,2,6,2,4,0.8,2,5000);
+        solution = GeneticAlgorithm.search(8,20,2,6,2,4,0.8,2,5000);
 
         System.out.println("Best solution GA found "+ Arrays.toString(solution.getChromosome())+" Score : "+solution.getFitnessScore());
 
-        visualizeBoard(solution.getChromosome());
+        visualizeBoard(solution.getChromosome());int counter=0;
+
+//        for(int i=0;i<1000;i++){
+//            System.out.println(i);
+//            solution = GeneticAlgorithm.search(12,20,3,10,2,11,0.8,2,100);
+//            System.out.println("score = "+solution.getFitnessScore());
+//            if(solution.getFitnessScore()==0){
+//                counter++;
+//            }
+//        }
+//        System.out.println(counter);
+        GeneticAlgorithm.tuning(8,5000,"C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\bestSol.csv","C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\allSol.csv");
     }
 
 }

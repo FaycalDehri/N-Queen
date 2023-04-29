@@ -1,17 +1,14 @@
 import java.io.IOException;
-import java.io.ObjectStreamClass;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
-import GA.GeneticAlgorithm;
-import GA.Individual;
-import GA.IndividualComparator;
+import PSO.Particle;
+import PSO.ParticleSwarmOptimization;
+import PSO.Swarm;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.layout.GridPane;
 
 public class Main extends javafx.application.Application  {
 
@@ -122,12 +119,7 @@ public class Main extends javafx.application.Application  {
 //            System.out.println(Arrays.toString(i.getChromosome()) + " Score : " +i.getFitnessScore());
 //        }
 
-        Individual solution = new Individual();
-        solution = GeneticAlgorithm.search(8,20,2,6,2,4,0.8,2,5000);
 
-        System.out.println("Best solution GA found "+ Arrays.toString(solution.getChromosome())+" Score : "+solution.getFitnessScore());
-
-        visualizeBoard(solution.getChromosome());int counter=0;
 
 //        for(int i=0;i<1000;i++){
 //            System.out.println(i);
@@ -138,8 +130,40 @@ public class Main extends javafx.application.Application  {
 //            }
 //        }
 //        System.out.println(counter);
-        GeneticAlgorithm.tuning(8,5000,"C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\bestSol.csv","C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\allSol.csv");
+       //GeneticAlgorithm.tuning(1000,"C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\bestSol.csv","C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\allSol.csv");
+
+        ArrayList<Particle> pop = new ArrayList<>();
+
+//        pop = ParticleSwarmOptimization.genInitialPopulation(10,8);
+//
+//        for(Particle p : pop){
+//            System.out.println(Arrays.toString(p.getState())+" Personal Best : "+p.getScore() +" Group Best : "+p.getgBest()+ " And the group best state is : "+ Arrays.toString(p.getBestGroupState()));
+//        }
+//
+//        System.out.println("After Diversification :");
+//        ParticleSwarmOptimization.diversify(pop);
+//        for(Particle p : pop){
+//            System.out.println(Arrays.toString(p.getState())+" Personal Best : "+p.getScore() +" Group Best : "+p.getgBest()+ " And the group best state is : "+ Arrays.toString(p.getBestGroupState()));
+//        }
+        Swarm swarm = new Swarm();
+        swarm = ParticleSwarmOptimization.initSwarm(10,8);
+
+       for(Particle guy : swarm.getPopulation()){
+           System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore()+ " The personal Best is "+ Arrays.toString(guy.getpBest().getState()) +" Score : "+guy.getpBest().getScore());
+       }
+        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest().getState())+ " Score : "+swarm.getgBest().getScore());
+
+        swarm = ParticleSwarmOptimization.crossAndMove(swarm);
+        System.out.println("After crossing : ");
+        for(Particle guy : swarm.getPopulation()){
+            System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore() +" And the personal best : "+ Arrays.toString(guy.getpBest().getState())+" Score : "+guy.getpBest().getScore());
+        }
+        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest().getState())+ " Score : "+swarm.getgBest().getScore()+"h"+swarm.getgBest().calculateFitness());
+
+
     }
+
+
 
 }
 

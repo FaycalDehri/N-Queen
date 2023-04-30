@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import PSO.Particle;
+import PSO.ParticleComparator;
 import PSO.ParticleSwarmOptimization;
 import PSO.Swarm;
 import javafx.fxml.FXMLLoader;
@@ -146,19 +147,30 @@ public class Main extends javafx.application.Application  {
 //            System.out.println(Arrays.toString(p.getState())+" Personal Best : "+p.getScore() +" Group Best : "+p.getgBest()+ " And the group best state is : "+ Arrays.toString(p.getBestGroupState()));
 //        }
         Swarm swarm = new Swarm();
-        swarm = ParticleSwarmOptimization.initSwarm(10,8);
+//        swarm = ParticleSwarmOptimization.initSwarm(10,8);
+//
+//       for(Particle guy : swarm.getPopulation()){
+//           System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore()+ " The personal Best is "+ Arrays.toString(guy.getpBest()) +" Score : "+ParticleSwarmOptimization.evaluateState(guy.getpBest()));
+//       }
+//        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest())+ " Score : "+ParticleSwarmOptimization.evaluateState(swarm.getgBest()));
+//
+//        ParticleSwarmOptimization.cross(swarm,0.4,0.2);
+//        System.out.println("After crossing : ");
+//        for(Particle guy : swarm.getPopulation()){
+//            System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore() +" And the personal best : "+ Arrays.toString(guy.getpBest())+" Score : "+ParticleSwarmOptimization.evaluateState(guy.getpBest()));
+//        }
+//        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest())+ " Score : "+ParticleSwarmOptimization.evaluateState(swarm.getgBest()));
+//
+//        ParticleSwarmOptimization.cross(swarm,0.4,0.2);
+//        System.out.println("After crossing 2 : ");
+//        for(Particle guy : swarm.getPopulation()){
+//            System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore() +" And the personal best : "+ Arrays.toString(guy.getpBest())+" Score : "+ParticleSwarmOptimization.evaluateState(guy.getpBest()));
+//        }
+//        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest())+ " Score : "+ParticleSwarmOptimization.evaluateState(swarm.getgBest()));
+        Particle particle = new Particle();
+        particle = ParticleSwarmOptimization.search(8,1000,500,0.4,0.6);
+        System.out.println("Best guy "+ Arrays.toString(particle.getState()) +" score : "+particle.getScore());
 
-       for(Particle guy : swarm.getPopulation()){
-           System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore()+ " The personal Best is "+ Arrays.toString(guy.getpBest().getState()) +" Score : "+guy.getpBest().getScore());
-       }
-        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest().getState())+ " Score : "+swarm.getgBest().getScore());
-
-        swarm = ParticleSwarmOptimization.crossAndMove(swarm);
-        System.out.println("After crossing : ");
-        for(Particle guy : swarm.getPopulation()){
-            System.out.println(Arrays.toString(guy.getState()) +" Score : "+ guy.getScore() +" And the personal best : "+ Arrays.toString(guy.getpBest().getState())+" Score : "+guy.getpBest().getScore());
-        }
-        System.out.println("the global best is : "+Arrays.toString(swarm.getgBest().getState())+ " Score : "+swarm.getgBest().getScore()+"h"+swarm.getgBest().calculateFitness());
 
 
     }

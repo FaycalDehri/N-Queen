@@ -3,9 +3,8 @@ package PSO;
 public class Particle {
 
     int[] state;
-    Particle pBest;
+    int[] pBest;
     int score;
-
 
     public Particle(){
 
@@ -19,7 +18,7 @@ public class Particle {
         return score;
     }
 
-    public Particle getpBest() {
+    public int[] getpBest() {
         return pBest;
     }
 
@@ -31,10 +30,8 @@ public class Particle {
         this.state = state;
     }
 
-    public void setpBest(Particle pBest) {
-        if(pBest.score<this.pBest.score){
-            this.pBest = pBest;
-        }
+    public void setpBest(int[] pBest) {
+       this.pBest = pBest;
     }
 
     public int calculateFitness(){
@@ -57,5 +54,6 @@ public class Particle {
 
         return conflicts;
     }
+
 
 }

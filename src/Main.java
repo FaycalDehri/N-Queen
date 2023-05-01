@@ -3,6 +3,7 @@ import java.io.ObjectStreamClass;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import PSO.*;
 
 import GA.GeneticAlgorithm;
 import GA.Individual;
@@ -50,39 +51,44 @@ public class Main extends javafx.application.Application  {
 
         System.out.println(board.toString());
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
 
 //        int n = 8;
 //        int[] startState = new int[n];
 //        int[] solutionArr ;
 //
+//
+//
 //        Node sol = new Node(startState,0,n);
+//
 //        ConflictsHeuristic conflictsHeuristic = new ConflictsHeuristic();
-//        Astar.EuclideanDistance euclideanDistance = new Astar.EuclideanDistance();
+//        EuclideanDistance euclideanDistance = new EuclideanDistance();
 //
 //
 //    long startTime = System.nanoTime();
 //
-////        solutionArr = Blind.DFS.search(n);
-////    solutionArr = Blind.BFS.search(n);
-//        sol.setState(Astar.Astar.search(sol,conflictsHeuristic));
-////        sol.setState(Astar.Astar.search(sol,euclideanDistance));
+//    //solutionArr = DFS.search(n);
+//    //solutionArr = BFS.search(n);
+//        //sol.setState(Astar.search(sol,conflictsHeuristic));
+////        sol.setState(Astar.search(sol,euclideanDistance));
 //
 //
 //
 //    long endTime = System.nanoTime();
 //    double durationMS=(endTime - startTime)/1000000;
 //    double durationS= durationMS/1000;
-//        System.out.println("n =" + n);
+//    System.out.println("n =" + n);
 //    System.out.println(  durationS);
 //    System.out.println(generatedNodes);
 //    System.out.println( developedNodes);
 //
-//        System.out.println(Arrays.toString(sol.getState()));
-////    printArray(solutionArr);
+//        //System.out.println(Arrays.toString(sol.getState()));
+//        printArray(solutionArr);
 
-       // launch();
+
+
+       launch();
 //        ArrayList<Individual> pop;
 //        ArrayList<Individual> elite;
 //        ArrayList<Individual> children;
@@ -122,12 +128,12 @@ public class Main extends javafx.application.Application  {
 //            System.out.println(Arrays.toString(i.getChromosome()) + " Score : " +i.getFitnessScore());
 //        }
 
-        Individual solution = new Individual();
+        /*Individual solution = new Individual();
         solution = GeneticAlgorithm.search(8,20,2,6,2,4,0.8,2,5000);
 
         System.out.println("Best solution GA found "+ Arrays.toString(solution.getChromosome())+" Score : "+solution.getFitnessScore());
 
-        visualizeBoard(solution.getChromosome());int counter=0;
+        visualizeBoard(solution.getChromosome());int counter=0;*/
 
 //        for(int i=0;i<1000;i++){
 //            System.out.println(i);
@@ -138,7 +144,45 @@ public class Main extends javafx.application.Application  {
 //            }
 //        }
 //        System.out.println(counter);
-        GeneticAlgorithm.tuning(8,5000,"C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\bestSol.csv","C:\\Users\\Fayçal\\OneDrive\\Bureau\\SII\\S2\\META\\TP\\N-Queen\\src\\GA\\allSol.csv");
+
+
+//        GeneticAlgorithm.tuning(10,5000,"C:\\Users\\acer\\Desktop\\TP\\MetaHeuristique\\N-Queen\\src\\GA\\bestSol1.csv","C:\\Users\\acer\\Desktop\\TP\\MetaHeuristique\\N-Queen\\src\\GA\\allSol.csv");
+
+
+
+//        ArrayList<Particle> pop = new ArrayList<>();
+//
+//        pop = ParticleSwarmOptimization.genInitialPopulation(10,8);
+//
+//        for(Particle p : pop){
+//            System.out.println(Arrays.toString(p.getState())+" Personal Best : "+p.getScore() +" Group Best : "+p.getgBest()+ " And the group best state is : "+ Arrays.toString(p.getBestGroupState()));
+//        }
+//
+//        System.out.println("After Diversification :");
+//        ParticleSwarmOptimization.diversify(pop);
+//        for(Particle p : pop){
+//            System.out.println(Arrays.toString(p.getState())+" Personal Best : "+p.getScore() +" Group Best : "+p.getgBest()+ " And the group best state is : "+ Arrays.toString(p.getBestGroupState()));
+//        }
+//        Swarm swarm = new Swarm();
+//        int n =100;
+//        swarm = ParticleSwarmOptimization.initSwarm(1000,n);
+//        System.out.println("global "+ swarm.getgBestScore());
+//
+//
+//
+//
+//
+//
+//        //System.out.println("global best for swarm is " + swarm.getgBestScore());
+//        swarm = ParticleSwarmOptimization.crossAndMove(n, 0.25, 0.5, 1000, swarm);
+//        //System.out.println("\n After crossing : \n");
+//
+//            //System.out.println("\n the global best is : "+Arrays.toString(swarm.getgBest().getState())+ " Score : "+swarm.getgBest().getScore()+" h "+swarm.getgBest().calculateFitness());
+//            System.out.println("\n the global best is : "+Arrays.toString(swarm.getgBest())+ " Score : "+swarm.getgBestScore());
+//
+//
+
+
     }
 
 }

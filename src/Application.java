@@ -94,5 +94,4 @@ public class Application  {
         gridPane.getChildren().removeIf(child -> child instanceof ImageView && ((ImageView) child).getImage() != null);
     }
 
-    }
-
+}

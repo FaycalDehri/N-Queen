@@ -2,13 +2,29 @@ package GA;
 
 public class Individual{
 
+    int mutation =0;
+    public static int  counter = 0;
+
+    public static int  age = 0;
+
     int[] chromosome;
-    int age;
+
     int fitnessScore;
 
     public Individual(){
        // this.fitnessScore = this.calculateFitnessScore();
     }
+
+
+    public int getMutation() {
+        return mutation;
+    }
+
+    public void setMutation(int mutation) {
+        this.mutation = mutation;
+    }
+
+
 
     public int[] getChromosome() {
         return chromosome;
@@ -26,9 +42,9 @@ public class Individual{
         this.chromosome = chromosome;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+//    public void setAge(int age) {
+//        this.age = age;
+//    }
 
     public void setFitnessScore(int fitnessScore) {
 

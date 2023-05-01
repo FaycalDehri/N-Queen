@@ -6,6 +6,8 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class GeneticAlgorithm {
+
+
     public static void shuffle(int[] array){
         Random rand = new Random();
         for (int i = 0; i < array.length; i++) {
@@ -164,13 +166,12 @@ public class GeneticAlgorithm {
         ArrayList<Individual> children = new ArrayList<>();
 
         // Loop through each pair of individuals in the selected population
-        for (int i = 0; i < selectedPopulation.size(); i++) {
+        for (int i = 0; i < 1; i++) {
             for (int j = i + 1; j < selectedPopulation.size(); j++) {
 
                 // Create two new individuals as children
                 Individual child1 = new Individual();
                 Individual child2 = new Individual();
-
                 // Generate crossover points
                 int[] crossoverPoints = new int[numberOfCrossoverPoints];
                 for (int k = 0; k < numberOfCrossoverPoints; k++) {
@@ -228,6 +229,10 @@ public class GeneticAlgorithm {
             for(int i=0; i<individual.getChromosome().length; i++){
                 //The mutation process consists of swapping two genes from the same chromosome
                 if(random.nextDouble() < mutationRate){
+                    individual.counter++;
+
+
+//                    individual.setMutation(individual.getMutation()+1);
                     gene1 = random.nextInt(individual.getChromosome().length);
                     gene2 = random.nextInt(individual.getChromosome().length);
                     temp = individual.getChromosome()[gene1];
@@ -323,6 +328,7 @@ public class GeneticAlgorithm {
             population.sort(new IndividualComparator());
 
             if(population.get(0).getFitnessScore()<bestIndividual.getFitnessScore()){
+                bestIndividual.age = generationCounter;
                 bestIndividual = population.get(0);
             }
           //  System.out.println(Arrays.toString(population.get(0).getChromosome()) + "Score : "+ population.get(0).getFitnessScore());
@@ -344,17 +350,17 @@ public class GeneticAlgorithm {
         double successRate=0;
 
         FileWriter writer1 = new FileWriter(bestSolutions);
-        FileWriter writer2 = new FileWriter(allSolutions);
+//        FileWriter writer2 = new FileWriter(allSolutions);
         BufferedWriter bestSolWriter = new BufferedWriter(writer1);
-        BufferedWriter allSolWriter = new BufferedWriter(writer2);
+//        BufferedWriter allSolWriter = new BufferedWriter(writer2);
 
-        allSolWriter.write("n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate\n");
+//        allSolWriter.write("n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate\n");
         bestSolWriter.write("n,Population Size,Crossover Type,Selection Type,Replacement Type,Mutation Rate,Number of Parents,Crossover Points,Success Rate\n");
         bestSolWriter.flush();
-        allSolWriter.flush();
+//        allSolWriter.flush();
 
         Individual guy;
-        for(int populationSize=5;populationSize<=20;populationSize++){
+        for(int populationSize=4;populationSize<=n-2;populationSize++){
             System.out.println("population size is "+populationSize);
             for(int crossoverType=1;crossoverType<=2;crossoverType++){
                 for(int selectionType=1;selectionType<=3;selectionType++){
@@ -378,9 +384,9 @@ public class GeneticAlgorithm {
                                         bestSolWriter.flush();
 
                                     }
-                                    allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
-                                            +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
-                                    allSolWriter.flush();
+//                                    allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+//                                            +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+//                                    allSolWriter.flush();
                                     successRate=0;
                                 }else{
                                     for (int crossOverPoints=1;crossOverPoints<n;crossOverPoints++){
@@ -400,9 +406,9 @@ public class GeneticAlgorithm {
 
 
                                             }
-                                            allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
-                                                    +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
-                                            allSolWriter.flush();
+//                                            allSolWriter.write(n+","+populationSize+","+crossoverType+","+selectionType+","+replacementType+","+mutationRate+","
+//                                                    +numberOfParents+","+"1"+","+(successRate/50)*100+"\n");
+//                                            allSolWriter.flush();
                                             successRate=0;
 
                                         }
@@ -416,7 +422,7 @@ public class GeneticAlgorithm {
             }
 
         }
-        allSolWriter.close();
+//        allSolWriter.close();
         bestSolWriter.close();
 
     }
